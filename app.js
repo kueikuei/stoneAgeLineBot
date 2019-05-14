@@ -30,14 +30,14 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
-const lineConfig = {
-  channelAccessToken: process.env.Channel_access_token,
-  channelSecret: process.env.Channel_secret
-};
 // const lineConfig = {
-//     channelAccessToken: 'qdzy8O4OluZkTmqpAO/LzvNOnZQ5XNHm7G2XWj3eFGVoDeCMXO4kptPS3IWFc1S/g0wxDLZzRaVPtN4HTfvOgq+iJImuu3yIc7kHNB030JWLsGg++pT4K5GZgsAHbzr3CIH23OfOwcu4JzpTMSPakQdB04t89/1O/w1cDnyilFU=',
-//     channelSecret:  '3696ca91a8467bda329372c3fd5f3b13'
-// }
+//   channelAccessToken: process.env.Channel_access_token,
+//   channelSecret: process.env.Channel_secret
+// };
+const lineConfig = {
+    channelAccessToken: 'qdzy8O4OluZkTmqpAO/LzvNOnZQ5XNHm7G2XWj3eFGVoDeCMXO4kptPS3IWFc1S/g0wxDLZzRaVPtN4HTfvOgq+iJImuu3yIc7kHNB030JWLsGg++pT4K5GZgsAHbzr3CIH23OfOwcu4JzpTMSPakQdB04t89/1O/w1cDnyilFU=',
+    channelSecret:  '3696ca91a8467bda329372c3fd5f3b13'
+}
 const client = new line.Client(lineConfig);
 const app = express();
 
