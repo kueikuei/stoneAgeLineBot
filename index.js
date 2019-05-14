@@ -29,16 +29,16 @@
 
 var linebot = require('linebot');
 // const line = require('@line/bot-sdk');
-const express = require('express');
+var express = require('express');
 // const lineConfig = {
 //   channelAccessToken: process.env.Channel_access_token,
 //   channelSecret: process.env.Channel_secret
 // };
-const lineConfig = {
+var bot = linebot({
     channelId: '1557059411',
     channelAccessToken: 'qdzy8O4OluZkTmqpAO/LzvNOnZQ5XNHm7G2XWj3eFGVoDeCMXO4kptPS3IWFc1S/g0wxDLZzRaVPtN4HTfvOgq+iJImuu3yIc7kHNB030JWLsGg++pT4K5GZgsAHbzr3CIH23OfOwcu4JzpTMSPakQdB04t89/1O/w1cDnyilFU=',
     channelSecret:  '3696ca91a8467bda329372c3fd5f3b13'
-}
+})
 //這一段的程式是專門處理當有人傳送文字訊息給LineBot時，我們的處理回應
 bot.on('message', function(event) {
     if (event.message.type = 'text') {
