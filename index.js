@@ -9,10 +9,25 @@ var bot = linebot({
 })
 //這一段的程式是專門處理當有人傳送文字訊息給LineBot時，我們的處理回應
 bot.on('message', function(event) {
+
   if (event.message.type = 'text') {
-    var msg = event.message.text;
-    if (msg==='任務') {
-      event.reply('紅爆任務').then(function(data) {
+
+    switch (event.message.text) {
+      case '任務':
+        rtnMsg('紅爆任務');
+        break;
+      case 'Mangoes':
+      case 'Papayas':
+        console.log('Mangoes and papayas are $2.79 a pound.');
+        rtnMsg('Papayas');
+        // expected output: "Mangoes and papayas are $2.79 a pound."
+        break;
+      default:
+        console.log('Sorry, we are out of ' + expr + '.');
+    }
+
+    function rtnMsg(rtn){
+      event.reply(rtn).then(function(data) {
         // 傳送訊息成功時，可在此寫程式碼 
         console.log(data);
       }).catch(function(error) {
@@ -20,6 +35,15 @@ bot.on('message', function(event) {
         console.log('錯誤產生，錯誤碼：'+error);
       });
     }
+    // if (msg==='任務') {
+    //   event.reply('紅爆任務').then(function(data) {
+    //     // 傳送訊息成功時，可在此寫程式碼 
+    //     console.log(data);
+    //   }).catch(function(error) {
+    //     // 傳送訊息失敗時，可在此寫程式碼 
+    //     console.log('錯誤產生，錯誤碼：'+error);
+    //   });
+    // }
 
     //收到文字訊息時，直接把收到的訊息傳回去
     // event.reply('test').then(function(data) {
