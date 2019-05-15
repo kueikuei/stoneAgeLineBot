@@ -11,10 +11,20 @@ var bot = linebot({
 bot.on('message', function(event) {
   if (event.message.type = 'text') {
     var msg = event.message.text;
-  //收到文字訊息時，直接把收到的訊息傳回去
+    if (msg==='任務') {
+      event.reply('紅爆任務').then(function(data) {
+        // 傳送訊息成功時，可在此寫程式碼 
+        console.log(data);
+      }).catch(function(error) {
+        // 傳送訊息失敗時，可在此寫程式碼 
+        console.log('錯誤產生，錯誤碼：'+error);
+      });
+    }
+
+    //收到文字訊息時，直接把收到的訊息傳回去
     event.reply('test').then(function(data) {
       // 傳送訊息成功時，可在此寫程式碼 
-      console.log(msg);
+      console.log(data);
     }).catch(function(error) {
       // 傳送訊息失敗時，可在此寫程式碼 
       console.log('錯誤產生，錯誤碼：'+error);
