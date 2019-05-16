@@ -2,6 +2,10 @@ var linebot = require('linebot');
 // const line = require('@line/bot-sdk');
 var express = require('express');
 
+// 取得檔案
+var data = require('./data.json')
+// console.log(data[0]['合成'])
+
 var bot = linebot({
     channelId: process.env.channelId,
     channelAccessToken: process.env.ChannelAccessToken,
@@ -17,9 +21,9 @@ bot.on('message', function(event) {
         rtnMsg('紅爆任務');
         break;
       case 'Mangoes':
-      case 'Papayas':
+      case event.message.text:
         console.log('Mangoes and papayas are $2.79 a pound.');
-        rtnMsg('Papayas');
+        rtnMsg(data[0][event.message.text]);
         // expected output: "Mangoes and papayas are $2.79 a pound."
         break;
       default:
@@ -35,24 +39,7 @@ bot.on('message', function(event) {
         console.log('錯誤產生，錯誤碼：'+error);
       });
     }
-    // if (msg==='任務') {
-    //   event.reply('紅爆任務').then(function(data) {
-    //     // 傳送訊息成功時，可在此寫程式碼 
-    //     console.log(data);
-    //   }).catch(function(error) {
-    //     // 傳送訊息失敗時，可在此寫程式碼 
-    //     console.log('錯誤產生，錯誤碼：'+error);
-    //   });
-    // }
 
-    //收到文字訊息時，直接把收到的訊息傳回去
-    // event.reply('test').then(function(data) {
-    //   // 傳送訊息成功時，可在此寫程式碼 
-    //   console.log(data);
-    // }).catch(function(error) {
-    //   // 傳送訊息失敗時，可在此寫程式碼 
-    //   console.log('錯誤產生，錯誤碼：'+error);
-    // });
   }
 });
   
