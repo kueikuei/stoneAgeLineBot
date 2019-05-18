@@ -26,19 +26,16 @@ if (localConfig) {
 
 //這一段的程式是專門處理當有人傳送文字訊息給LineBot時，我們的處理回應
 bot.on('message', function(event) {
-  console.log('event.message.text')
-  console.log(event.message.text, typeof event.message.text)
-  
 
   if (event.message.type = 'text') {
 
     switch (event.message.text) {
       case event.message.text:
         rtnMsg(data[0][event.message.text]);
-        // expected output: "Mangoes and papayas are $2.79 a pound."
         break;
+      // TODO: 比對學習
       default:
-        // console.log('Sorry, we are out of ' + expr + '.');
+        console.log('沒有符合的關鍵字');
     }
 
     function rtnMsg(rtn){
