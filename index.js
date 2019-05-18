@@ -8,7 +8,7 @@ var data = require('./data.json')
 var bot
 
 // 本地環境測試
-var localConfig = require('./localConfig.json')
+// var localConfig = require('./localConfig.json')
 if (localConfig) {
   bot = linebot({
     channelId: localConfig[0].channelId,
@@ -16,7 +16,7 @@ if (localConfig) {
     channelSecret:  localConfig[0].channelSecret
   })
 // 遠端機台
-}else{
+} else{
   bot = linebot({
     channelId: process.env.channelId,
     channelAccessToken: process.env.ChannelAccessToken,
