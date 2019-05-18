@@ -1,33 +1,44 @@
 var linebot = require('linebot');
 // const line = require('@line/bot-sdk');
 var express = require('express');
-
 // 取得檔案
 var data = require('./data.json')
 // console.log(data[0]['合成'])
 
-var bot = linebot({
+var bot
+
+// 本地環境測試
+var localConfig = require('./localConfig.json')
+if (localConfig) {
+  bot = linebot({
+    channelId: localConfig[0].channelId,
+    channelAccessToken: localConfig[0].channelAccessToken,
+    channelSecret:  localConfig[0].channelSecret
+  })
+// 遠端機台
+}else{
+  bot = linebot({
     channelId: process.env.channelId,
     channelAccessToken: process.env.ChannelAccessToken,
     channelSecret:  process.env.ChannelSecret
-})
+  })
+}
+
 //這一段的程式是專門處理當有人傳送文字訊息給LineBot時，我們的處理回應
 bot.on('message', function(event) {
+  console.log('event.message.text')
+  console.log(event.message.text, typeof event.message.text)
+  
 
   if (event.message.type = 'text') {
 
     switch (event.message.text) {
-      case '任務':
-        rtnMsg('紅爆任務');
-        break;
-      case 'Mangoes':
       case event.message.text:
-        console.log('Mangoes and papayas are $2.79 a pound.');
         rtnMsg(data[0][event.message.text]);
         // expected output: "Mangoes and papayas are $2.79 a pound."
         break;
       default:
-        console.log('Sorry, we are out of ' + expr + '.');
+        // console.log('Sorry, we are out of ' + expr + '.');
     }
 
     function rtnMsg(rtn){
@@ -47,7 +58,10 @@ const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
 
-var server = app.listen(process.env.PORT || 8080, function() {
+// Bot所監聽的webhook路徑與port
+// for local test
+
+var server = app.listen(process.env.PORT || 3000, function() {
   var port = server.address().port;
   console.log('目前的port是', port);
 });
