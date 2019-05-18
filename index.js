@@ -4,12 +4,13 @@ var express = require('express');
 // 取得檔案
 var data = require('./data.json')
 // console.log(data[0]['合成'])
+var fs = require('fs');
 
 var bot
 
 // 本地環境測試
-// var localConfig = require('./localConfig.json')
-var localConfig
+var localConfig = require('./localConfig.json')
+// var localConfig
 if (localConfig) {
   bot = linebot({
     channelId: localConfig[0].channelId,
@@ -17,7 +18,8 @@ if (localConfig) {
     channelSecret:  localConfig[0].channelSecret
   })
 // 遠端機台
-} else{
+} 
+else{
   bot = linebot({
     channelId: process.env.channelId,
     channelAccessToken: process.env.ChannelAccessToken,
@@ -27,17 +29,31 @@ if (localConfig) {
 
 //這一段的程式是專門處理當有人傳送文字訊息給LineBot時，我們的處理回應
 bot.on('message', function(event) {
+  console.log(data[0][event.message.text])
 
   if (event.message.type = 'text') {
 
-    switch (event.message.text) {
-      case event.message.text:
-        rtnMsg(data[0][event.message.text]);
-        break;
-      // TODO: 比對學習
-      default:
-        console.log('沒有符合的關鍵字');
+    // 關鍵字回覆
+    rtnMsg(data[0][event.message.text]);
+
+    // 寫檔 - key in 新關鍵字、內容給機器人
+    if (event.message.text[0] === '>'){
+      // 字串切割 -> 切三份
+      var textAry = event.message.text.split(" ",3)
+
+      // 寫入檔案
+      data[0][textAry[1]] = textAry[2]
+
+      fs.writeFile("./data.json", JSON.stringify(data), function(err) {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("The file was saved!");
+        }
+      });
     }
+
+    // TODO: 比對學習
 
     function rtnMsg(rtn){
       event.reply(rtn).then(function(data) {
