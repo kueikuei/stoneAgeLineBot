@@ -31,27 +31,27 @@ else{
 bot.on('message', function(event) {
 
   if (event.message.type = 'text') {
-    console.log('test',event.message.text[0])
+    console.log('test',event.message.text)
 
     // 關鍵字回覆
     rtnMsg(data[0][event.message.text]);
 
     // 寫檔 - key in 新關鍵字、內容給機器人
-    if (event.message.text[0] === '>'){
-      // 字串切割 -> 切三份
-      var textAry = event.message.text.split(" ",3)
+    // if (event.message.text[0] === '>'){
+    //   // 字串切割 -> 切三份
+    //   var textAry = event.message.text.split(" ",3)
 
-      // 寫入檔案
-      data[0][textAry[1]] = textAry[2]
+    //   // 寫入檔案
+    //   data[0][textAry[1]] = textAry[2]
 
-      fs.writeFile("./data.json", JSON.stringify(data), function(err) {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log("The file was saved!");
-        }
-      });
-    }
+    //   fs.writeFile("./data.json", JSON.stringify(data), function(err) {
+    //     if(err) {
+    //         console.log(err);
+    //     } else {
+    //         console.log("The file was saved!");
+    //     }
+    //   });
+    // }
 
     // TODO: 比對學習
 
