@@ -31,7 +31,7 @@ else{
 bot.on('message', function(event) {
 
   if (event.message.type = 'text') {
-    console.log('test',event.message.text)
+    console.log('test',event.message.text[0])
 
     // 關鍵字回覆
     rtnMsg(data[0][event.message.text]);
