@@ -9,8 +9,8 @@ var fs = require('fs');
 var bot
 
 // 本地環境測試
-var localConfig = require('./localConfig.json')
-// var localConfig
+// var localConfig = require('./localConfig.json')
+var localConfig
 if (localConfig) {
   bot = linebot({
     channelId: localConfig[0].channelId,
