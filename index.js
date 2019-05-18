@@ -29,9 +29,9 @@ else{
 
 //這一段的程式是專門處理當有人傳送文字訊息給LineBot時，我們的處理回應
 bot.on('message', function(event) {
-  console.log(data[0][event.message.text])
 
   if (event.message.type = 'text') {
+    console.log('test',event.message.text[0])
 
     // 關鍵字回覆
     rtnMsg(data[0][event.message.text]);
