@@ -9,7 +9,7 @@ var fs = require('fs');
 var admin = require("firebase-admin");
 
 admin.initializeApp({
-  credential: admin.credential.cert(process.env.FirebaseKey),
+  credential: admin.credential.cert(JSON.parse(process.env.FirebaseKey)),
   databaseURL: "https://sabot-dca8c.firebaseio.com"
 });
 
