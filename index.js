@@ -6,6 +6,15 @@ var data = require('./data.json')
 // console.log(data[0]['合成'])
 var fs = require('fs');
 
+var admin = require("firebase-admin");
+
+admin.initializeApp({
+  credential: admin.credential.cert(process.env.FirebaseKey),
+  databaseURL: "https://sabot-dca8c.firebaseio.com"
+});
+
+var db = admin.database()
+
 var bot
 
 // 本地環境測試
@@ -40,6 +49,13 @@ bot.on('message', function(event) {
       if (event.message.text[0]==='>'){
         // 字串切割 -> 切三份
         var textAry = event.message.text.split(" ",3)
+
+
+        // get data
+        db.ref().on('value',function(snapshot){
+            console.log(JSON.stringify(snapshot.val(),null,2));
+        })
+
   
         // 寫入檔案
         data[0][textAry[1]] = textAry[2]

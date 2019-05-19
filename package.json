@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "linebot": "^1.4.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "firebase-admin": "^7.3.0",
+    "linebot": "^1.4.1"
   },
   "devDependencies": {
     "@line/bot-sdk": "^6.7.0",
