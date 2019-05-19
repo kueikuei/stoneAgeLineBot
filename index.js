@@ -1,18 +1,14 @@
 var linebot = require('linebot');
-// const line = require('@line/bot-sdk');
 var express = require('express');
-// 取得檔案
-var data = require('./data.json')
-// console.log(data[0]['合成'])
-var fs = require('fs');
-
 var admin = require("firebase-admin");
 
 admin.initializeApp({
   credential: admin.credential.cert(JSON.parse(process.env.FirebaseKey)),
+  // credential: admin.credential.cert(require("./sabot-dca8c-firebase-adminsdk-mqrmy-1c07d286ac.json")),
   databaseURL: "https://sabot-dca8c.firebaseio.com"
 });
 
+// 建立 db 連線
 var db = admin.database()
 
 var bot
@@ -42,7 +38,11 @@ bot.on('message', function(event) {
   if (event.message.type = 'text') {
 
     // 關鍵字回覆
-    rtnMsg(data[0][event.message.text]);
+    // rtnMsg(data[0][event.message.text]);
+
+    db.ref(`data/${event.message.text}`).on('value',function(snapshot){
+      rtnMsg(snapshot.val());
+    })
 
     // 寫檔 - key in 新關鍵字、內容給機器人
     try{
@@ -50,28 +50,14 @@ bot.on('message', function(event) {
         // 字串切割 -> 切三份
         var textAry = event.message.text.split(" ",3)
 
-
-        // get data
-        db.ref().on('value',function(snapshot){
-            console.log(JSON.stringify(snapshot.val(),null,2));
-        })
-
-  
         // 寫入檔案
-        data[0][textAry[1]] = textAry[2]
-  
-        fs.writeFile("./data.json", JSON.stringify(data), function(err) {
-          if(err) {
-              console.log(err);
-          } else {
-              console.log("The file was saved!");
-          }
-        });
+        db.ref(`data/${textAry[1]}`).set(textAry[2]);
+
       }
     }
     catch(e) {
       console.log(e) // 把例外物件傳給錯誤處理器
-  }
+    }
 
     // TODO: 比對學習
 
