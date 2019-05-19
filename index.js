@@ -40,9 +40,14 @@ bot.on('message', function(event) {
     // 關鍵字回覆
     // rtnMsg(data[0][event.message.text]);
 
-    db.ref(`data/${event.message.text}`).on('value',function(snapshot){
-      rtnMsg(snapshot.val());
-    })
+    try{
+      db.ref(`data/${event.message.text}`).on('value',function(snapshot){
+        rtnMsg(snapshot.val());
+      })
+    }
+    catch(e){
+      console.log(e) // 把例外物件傳給錯誤處理器
+    }
 
     // 寫檔 - key in 新關鍵字、內容給機器人
     try{
