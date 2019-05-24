@@ -10,8 +10,10 @@ admin.initializeApp({
 
 // 建立 db 連線
 var db = admin.database()
-
 var bot
+// 全域清單
+// [key, key, key]
+var keyList = []
 
 // 本地環境測試
 // var localConfig = require('./localConfig.json')
@@ -23,7 +25,7 @@ if (localConfig) {
     channelSecret:  localConfig[0].channelSecret
   })
 // 遠端機台
-} 
+}
 else{
   bot = linebot({
     channelId: process.env.channelId,
@@ -38,12 +40,16 @@ bot.on('message', function(event) {
   if (event.message.type = 'text') {
 
     // 關鍵字回覆
-    // rtnMsg(data[0][event.message.text]);
-
     try{
-      db.ref(`data/${event.message.text}`).on('value',function(snapshot){
-        rtnMsg(snapshot.val());
-      })
+      keyList.forEach(key => {
+        if(event.message.text.indexOf(key)>-1){
+          console.log('key',key)
+          // 關鍵字回覆
+          db.ref(`data/${key}`).on('value',function(snapshot){
+            rtnMsg(snapshot.val());
+          })
+        }
+      });
     }
     catch(e){
       console.log(e) // 把例外物件傳給錯誤處理器
@@ -65,6 +71,7 @@ bot.on('message', function(event) {
     }
 
     // TODO: 比對學習
+    
 
     function rtnMsg(rtn){
       event.reply(rtn).then(function(data) {
@@ -77,11 +84,22 @@ bot.on('message', function(event) {
     }
 
   }
+
 });
+// 監聽 firebase 資料庫
+// 每一次資料庫有更新這邊都能偵測
+// 更新清單資料以利使用
+db.ref('data').on('value',function(snapshot){
+  var dataKeys = Object.keys(snapshot.val())
+  keyList = dataKeys
   
+})
+
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
+
+
 
 // Bot所監聽的webhook路徑與port
 // for local test
