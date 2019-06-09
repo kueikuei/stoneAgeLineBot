@@ -103,7 +103,7 @@ bot.on('message', function (event) {
           // 061012 六月十號12點
           // .toLocaleString('zh-TW', {timeZone: 'Asia/Taipei'});
           var currentTime = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
-          var targetTime = new Date(2019, parseInt(textAry[2].slice(0, 2))-9, parseInt(textAry[2].slice(2, 4)), parseInt(textAry[2].slice(4, 6)), parseInt(textAry[2].slice(6, 8))).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
+          var targetTime = new Date(2019, parseInt(textAry[2].slice(0, 2))-1, parseInt(textAry[2].slice(2, 4)), parseInt(textAry[2].slice(4, 6))-8, parseInt(textAry[2].slice(6, 8))).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
           // var targetTime = new Date(2019, parseInt(textAry[2].slice(0, 2))-1, parseInt(textAry[2].slice(2, 4)), parseInt(textAry[2].slice(4, 6)), parseInt(textAry[2].slice(6, 8)))
 
           
