@@ -88,7 +88,7 @@ bot.on('message', function (event) {
 
     // 主動po文
     try {
-      if (event.message.text.slice(0, 4) === 'post') {
+      if (event.message.text.slice(0, 4) === 'push') {
 
         // 字串切割 -> 切三份
         var textAry = event.message.text.split(" ", 4)
@@ -115,17 +115,23 @@ bot.on('message', function (event) {
 
         // TODO: 每隔多久要發一次，到何時結束
         if (textAry.length === 4) {
-          var duration = textAry[2] * 1000 * 60 * 60 / textAry[3]
+          // 發幾次 
+          var n = +(textAry[3])
+
+          // 加限制確定不會發太多次 -> 至多五次
+          if(n>5){
+            n = 5
+          }
+
+          var duration = textAry[2] * 1000 * 60 * 60 / n
 
           // 1h 3次
-          for (var i = 1; i <= textAry[3]; i++) {
+          for (var i = 1; i <= n; i++) {
             var waitTime = duration * i;
             npostInTime(textAry[1], waitTime)
           }
 
         }
-
-
 
       }
     } catch (e) {
