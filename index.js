@@ -78,7 +78,9 @@ bot.on('message', function (event) {
         var textAry = event.message.text.split(" ", 4)
 
         // 寫入檔案
-        db.ref(`data/${textAry[1]}`).set(textAry[2]);
+        if(textAry.length===3){
+          db.ref(`data/${textAry[1]}`).set(textAry[2]);
+        }
 
         if (textAry.length===4 && event.message.text[3] === 'img') {
           var obj = {}
