@@ -75,10 +75,18 @@ bot.on('message', function (event) {
     try {
       if (event.message.text[0] === '>') {
         // 字串切割 -> 切三份
-        var textAry = event.message.text.split(" ", 3)
+        var textAry = event.message.text.split(" ", 4)
 
         // 寫入檔案
         db.ref(`data/${textAry[1]}`).set(textAry[2]);
+
+        if (textAry.length===4 && event.message.text[3] === 'img') {
+          var obj = {}
+          obj.originalContentUrl = event.message.text[2]
+          obj.previewImageUrl = event.message.text[2]
+          obj.type = 'image'
+        }
+        db.ref(`data/${textAry[1]}`).set(obj);
 
       }
     }
