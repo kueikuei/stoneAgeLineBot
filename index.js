@@ -82,12 +82,11 @@ bot.on('message', function (event) {
           db.ref(`data/${textAry[1]}`).set(textAry[2]);
         }
 
-        if (textAry.length===4) {
+        if (textAry.length===4 && textAry[3] === 'img') {
           var obj = {}
-          obj.originalContentUrl = event.message.text[2]
-          obj.previewImageUrl = event.message.text[2]
+          obj.originalContentUrl = textAry[2]
+          obj.previewImageUrl = textAry[2]
           obj.type = 'image'
-          console.log('obj',typeof obj,obj)
         }
         db.ref(`data/${textAry[1]}`).set(obj);
 
