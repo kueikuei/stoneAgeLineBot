@@ -82,7 +82,7 @@ bot.on('message', function (event) {
           db.ref(`data/${textAry[1]}`).set(textAry[2]);
         }
 
-        if (textAry.length===4 && event.message.text[3] === 'img') {
+        if (textAry.length===4) {
           var obj = {}
           obj.originalContentUrl = event.message.text[2]
           obj.previewImageUrl = event.message.text[2]
