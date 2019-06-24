@@ -87,8 +87,9 @@ bot.on('message', function (event) {
           obj.originalContentUrl = event.message.text[2]
           obj.previewImageUrl = event.message.text[2]
           obj.type = 'image'
+          console.log('obj',typeof obj,obj)
         }
-        db.ref(`data/${textAry[1]}`).set(JSON.stringify(obj));
+        db.ref(`data/${textAry[1]}`).set(obj);
 
       }
     }
