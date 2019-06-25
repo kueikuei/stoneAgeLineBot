@@ -72,6 +72,7 @@ bot.on('message', function (event) {
     }
 
     // 寫檔 - key in 新關鍵字、內容給機器人
+    // new
     try {
       if (event.message.text[0] === '>') {
         // 字串切割 -> 切三份
