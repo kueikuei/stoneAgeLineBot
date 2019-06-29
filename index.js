@@ -48,10 +48,11 @@ else {
 
 //這一段的程式是專門處理當有人傳送文字訊息給LineBot時，我們的處理回應
 bot.on('message', function (event) {
+  // console.log(event.message.type,event.source.groupId)
   // 沒有此 group id 就新增
-  if (event.source.groupId && allIDs.indexOf(event.source.groupId) === -1) {
-    allIDs.push(event.source.groupId)
-  }
+  // if (event.source.groupId && allIDs.indexOf(event.source.groupId) === -1) {
+  //   allIDs.push(event.source.groupId)
+  // }
 
   if (event.message.type = 'text') {
 
