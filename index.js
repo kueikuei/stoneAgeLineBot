@@ -16,12 +16,12 @@ var bot
 var keyList = []
 
 // group ID
-// var allIDs = [
-//   'C9b8eec334a494490e84e21a736ebd196', //A
-//   'Cac9b057386d3a2b7c7c795e1db0b1b98', // B
-//   'C516266dd76bfcd49c07f2f61002fd989', // C
-//   'U3b90812bccb505e9a03722a0a772c894' // kuei
-// ]
+var allIDs = [
+  'C9b8eec334a494490e84e21a736ebd196', //A
+  'Cac9b057386d3a2b7c7c795e1db0b1b98', // B
+  'C516266dd76bfcd49c07f2f61002fd989', // C
+  'U3b90812bccb505e9a03722a0a772c894' // kuei
+]
 
 // 本地環境測試
 // var localConfig = require('./localConfig.json')
@@ -100,31 +100,31 @@ bot.on('message', function (event) {
     }
 
     // 主動po文
-    // try {
-    //   if (event.message.text.slice(0, 4) === 'push') {
+    try {
+      if (event.message.text.slice(0, 4) === 'push') {
 
-    //     // 字串切割 -> 切三份
-    //     var textAry = event.message.text.split(" ", 4)
-    //     console.log(textAry)
-    //     if (textAry.length === 2) {
-    //       post(textAry[1])
-    //     }
+        // 字串切割 -> 切三份
+        var textAry = event.message.text.split(" ", 4)
+        console.log(textAry)
+        if (textAry.length === 2) {
+          post(textAry[1])
+        }
 
-    //     // TODO: 幾月幾號要發布
-    //     if (textAry.length === 3) {
-    //       // 參數切割
-    //       // 061012 六月十號12點
-    //       // .toLocaleString('zh-TW', {timeZone: 'Asia/Taipei'});
-    //       var currentTime = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
-    //       var targetTime = new Date(2019, parseInt(textAry[2].slice(0, 2))-1, parseInt(textAry[2].slice(2, 4)), parseInt(textAry[2].slice(4, 6))-8, parseInt(textAry[2].slice(6, 8))).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
-    //       // var targetTime = new Date(2019, parseInt(textAry[2].slice(0, 2))-1, parseInt(textAry[2].slice(2, 4)), parseInt(textAry[2].slice(4, 6)), parseInt(textAry[2].slice(6, 8)))
+        // TODO: 幾月幾號要發布
+        // if (textAry.length === 3) {
+        //   // 參數切割
+        //   // 061012 六月十號12點
+        //   // .toLocaleString('zh-TW', {timeZone: 'Asia/Taipei'});
+        //   var currentTime = new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' });
+        //   var targetTime = new Date(2019, parseInt(textAry[2].slice(0, 2))-1, parseInt(textAry[2].slice(2, 4)), parseInt(textAry[2].slice(4, 6))-8, parseInt(textAry[2].slice(6, 8))).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
+        //   // var targetTime = new Date(2019, parseInt(textAry[2].slice(0, 2))-1, parseInt(textAry[2].slice(2, 4)), parseInt(textAry[2].slice(4, 6)), parseInt(textAry[2].slice(6, 8)))
 
           
-    //       console.log(currentTime,targetTime)
-    //       console.log('targetTime-currentTime', GetDateDiff(currentTime,targetTime,"seond"))
+        //   console.log(currentTime,targetTime)
+        //   console.log('targetTime-currentTime', GetDateDiff(currentTime,targetTime,"seond"))
 
-    //       postByTime(textAry[1], GetDateDiff(currentTime,targetTime,"seond"))
-    //     }
+        //   postByTime(textAry[1], GetDateDiff(currentTime,targetTime,"seond"))
+        // }
 
     //     // TODO: 每隔多久要發一次，到何時結束
     //     if (textAry.length === 4) {
@@ -146,10 +146,10 @@ bot.on('message', function (event) {
 
     //     }
 
-    //   }
-    // } catch (e) {
-    //   console.log(e) // 把例外物件傳給錯誤處理器
-    // }
+      }
+    } catch (e) {
+      console.log(e) // 把例外物件傳給錯誤處理器
+    }
 
     // TODO: 比對學習
 
