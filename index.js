@@ -49,7 +49,7 @@ else {
 
 //這一段的程式是專門處理當有人傳送文字訊息給LineBot時，我們的處理回應
 bot.on('message', function (event) {
-  console.log(event.message.text,event.source.groupId)
+  console.log(event.message.text,event)
   // 沒有此 group id 就新增
   // if (event.source.groupId && allIDs.indexOf(event.source.groupId) === -1) {
   //   allIDs.push(event.source.groupId)
@@ -100,15 +100,15 @@ bot.on('message', function (event) {
     }
 
     // 主動po文
-    // try {
-    //   if (event.message.text.slice(0, 4) === 'push') {
+    try {
+      if (event.message.text.slice(0, 4) === 'push') {
 
-    //     // 字串切割 -> 切三份
-    //     var textAry = event.message.text.split(" ", 4)
-    //     console.log(textAry)
-    //     if (textAry.length === 2) {
-    //       post(textAry[1])
-    //     }
+        // 字串切割 -> 切三份
+        var textAry = event.message.text.split(" ", 4)
+        console.log(textAry)
+        if (textAry.length === 2) {
+          post(textAry[1])
+        }
 
     //     // TODO: 幾月幾號要發布
     //     // if (textAry.length === 3) {
@@ -146,10 +146,10 @@ bot.on('message', function (event) {
 
     // //     }
 
-    //   }
-    // } catch (e) {
-    //   console.log(e) // 把例外物件傳給錯誤處理器
-    // }
+      }
+    } catch (e) {
+      console.log(e) // 把例外物件傳給錯誤處理器
+    }
 
     // TODO: 比對學習
 
