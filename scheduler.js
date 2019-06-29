@@ -9,7 +9,7 @@ var bot
 var allIDs = [
     'C9b8eec334a494490e84e21a736ebd196', //A
     'Cac9b057386d3a2b7c7c795e1db0b1b98', // B
-    'C516266dd76bfcd49c07f2f61002fd989', // C
+    'C516266dd76bfcd49c07f2f61002fd989' // C
   ]
   
 
