@@ -41,6 +41,7 @@ post(ad)
 // 主動發送訊息
 function post(msg) {
   allIDs.forEach(id => {
+    console.log('id',id)
     bot.push(id, [msg]);
   });
 }
