@@ -41,7 +41,7 @@ else {
 }
 
 // 主動發送訊息
-function post(msg,id) {
+function post(msg) {
     // console.log('msg',[msg])
     allIDs.forEach(id => {
         console.log('id',id)
@@ -60,8 +60,8 @@ function post(msg,id) {
     // bot.push('C516266dd76bfcd49c07f2f61002fd989', [msg]);
 }
 
-// var ad = '《玩家贊助方式0624 NEW》\n1.支付寶 / Visa Mastercard \nhttp:lovesa138.com/ps\n2.7391繳款方式（台灣/香港/澳門）支持ATM,超商\n\n《限時八天 每日消費回饋 ❤有機會獲得白色雷龍 》\nhttp://bit.ly/2NvEi8W'
-var ad = 'test'
+var ad = '《玩家贊助方式0624 NEW》\n1.支付寶 / Visa Mastercard \nhttp:lovesa138.com/ps\n2.7391繳款方式（台灣/香港/澳門）支持ATM,超商\n\n《限時八天 每日消費回饋 ❤有機會獲得白色雷龍 》\nhttp://bit.ly/2NvEi8W'
+// var ad = 'test'
 
 // var message = {
 //     type: 'text',
