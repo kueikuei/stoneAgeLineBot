@@ -45,10 +45,10 @@ function post(msg) {
     // console.log('msg',[msg])
     allIDs.forEach(id => {
         console.log('id',id)
-
-        setTimeout(function () {
-          bot.push(id, [msg]);
-        }, 2000);
+        bot.push(id, [msg]);
+        // setTimeout(function () {
+        //   bot.push(id, [msg]);
+        // }, 2000);
     });
 
     // client.pushMessage(id, [msg])
