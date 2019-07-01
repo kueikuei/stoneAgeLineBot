@@ -43,10 +43,13 @@ else {
 // 主動發送訊息
 function post(msg) {
     // console.log('msg',[msg])
-    // allIDs.forEach(id => {
-    //     console.log('id',id)
-    //     bot.push(id, [msg]);
-    // });
+    allIDs.forEach(id => {
+        console.log('id',id)
+
+        setTimeout(function () {
+          bot.push(id, [msg]);
+        }, 2);
+    });
 
     // client.pushMessage(id, [msg])
     // .then((res) => {
@@ -55,9 +58,9 @@ function post(msg) {
     // .catch((err) => {
     //     console.log(err)
     // });
-    bot.push('C9b8eec334a494490e84e21a736ebd196', [msg]);
-    bot.push('Cac9b057386d3a2b7c7c795e1db0b1b98', [msg]);
-    bot.push('C516266dd76bfcd49c07f2f61002fd989', [msg]);
+    // bot.push('C9b8eec334a494490e84e21a736ebd196', [msg]);
+    // bot.push('Cac9b057386d3a2b7c7c795e1db0b1b98', [msg]);
+    // bot.push('C516266dd76bfcd49c07f2f61002fd989', [msg]);
 }
 
 var ad = '《玩家贊助方式0624 NEW》\n1.支付寶 / Visa Mastercard \nhttp:lovesa138.com/ps\n2.7391繳款方式（台灣/香港/澳門）支持ATM,超商\n\n《限時八天 每日消費回饋 ❤有機會獲得白色雷龍 》\nhttp://bit.ly/2NvEi8W'
