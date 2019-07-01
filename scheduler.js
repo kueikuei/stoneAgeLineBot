@@ -48,7 +48,7 @@ function post(msg) {
 
         setTimeout(function () {
           bot.push(id, [msg]);
-        }, 2);
+        }, 2000);
     });
 
     // client.pushMessage(id, [msg])
